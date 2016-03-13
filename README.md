@@ -9,7 +9,9 @@ Angular2 client-side, Running in VS2015 using ASP.NET 5 and Identity v3 - W/ Ide
 
 3.) From the menu, open Views->Other Windows->Task Runner Explorer.  This will display the options in the gulp.js file.  You will need to run 2 commands to get going.  First, run copy:libs, after that finishes, run build:all.  These copy all the needed explosed node_module files to the public www-root folder and build the .js and .map files.
 
-4.) Run the project, open a browser and navigate to http://localhost:62046.
+4.) In order to use the membership system you need to configure you SMTP settings in appsettings.json, appsettings.development.json and appsettings.release.json.
+
+5.) Run the project, open a browser and navigate to http://localhost:62046.
 
 This should get you running, expect more documentation to follow in the weeks to come.
 
