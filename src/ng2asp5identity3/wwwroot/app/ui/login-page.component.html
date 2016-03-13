@@ -1,0 +1,8 @@
+
+<login-form             *ngIf='showLogin'           parent-page='main' (done)='doLoggedIn($event)'         (action)='switchView($event)' class='ui row'></login-form>
+<register-form          *ngIf='showRegister'        parent-page='main' (done)='doRegistered($event)'       (action)='switchView($event)' class='ui row'></register-form>
+<forgot-password-form   *ngIf='showForgotPassword'  parent-page='main' (done)='doForgotPassword($event)'   (action)='switchView($event)' class='ui row'></forgot-password-form>
+
+<!-- <login-form             *ngIf='showLogin'           (done)='doLoggedIn($event)'         (action)='switchView($event)' class='ui row'></login-form>
+<register-form          *ngIf='showRegister'        (done)='doRegistered($event)'       (action)='switchView($event)' class='ui row'></register-form>
+<forgot-password-form   *ngIf='showForgotPassword'  (done)='doForgotPassword($event)'   (action)='switchView($event)' class='ui row'></forgot-password-form> -->

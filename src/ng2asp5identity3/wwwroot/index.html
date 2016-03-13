@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ng2 asp.net5 identity3</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico" />
+
+    <!-- needed for angular 2 routing-->
+    <base href="/">
+
+    <link rel="stylesheet" type="text/css" href="lib/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <script src='lib/system.js'></script>
+    <script src='lib/es6-shim.min.js'></script>
+    <script src='lib/system-polyfills.js'></script>
+    <script src='lib/angular2-polyfills.js'></script>
+    <script src='lib/jquery.min.js'></script>
+
+    <script>
+        System.config({
+            defaultJSExtensions: true,
+            paths: {
+                // DON'T CHANGE KEY OF THIS PATH, CHANGE VALUE ONLY
+                // IF YOU EXPOSE node_modules as public / static dir to your app, you can remove this line.
+                'semantic-ui/dist/components/*': 'lib/semantic-ui/dist/components/*.js',
+                'rxjs/operator/*': 'lib/rxjs/operator/*.js',
+                'rxjs/*': 'lib/rxjs/*.js'
+            },
+            map: {
+                // IF YOU ARE NOT ABLE TO LOAD FROM node_modules
+                // you must copy ng-semantic from /node_modules/ng-semantic
+                // and set path to it
+                'ng-semantic/semantic': 'lib/ng-semantic/semantic.js',
+                'rxjs': 'lib/rxjs'
+            },
+            packages: {
+                "app": {
+                    format: 'register',
+                    defaultExtension: 'js'
+                },
+                "rxjs": {
+                    defaultExtension: 'js'
+                }
+            }
+        });
+    </script>
+
+    <script src='lib/angular2.dev.js'></script>
+    <script src='lib/router.dev.js'></script>
+    <script src='lib/http.dev.js'></script>
+
+</head>
+<body class="ui bottom attached pushable">
+    <!-- <sidebar class="ui sidebar left inverted vertical menu"></sidebar> -->
+    <div class="pusher">
+        <div class="main-content">
+            <ng2-app>
+                <div class="ui active inverted dimmer">
+                    <div class="ui text large loader">Loading</div>
+                </div>
+            </ng2-app>
+        </div>
+    </div>
+    <script>
+        System.import('app/boot').then(null, console.error.bind(console));
+    </script>
+</body>
+
+</html>

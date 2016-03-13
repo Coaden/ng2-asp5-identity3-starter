@@ -1,0 +1,12 @@
+<sm-menu title="{{ appSettings.title }}" class="ui large top fixed menu">
+    <div class='ui container'>
+        <sm-menu class="left menu">
+            <sidebar></sidebar>
+            <a sm-item [routerLink]="['Home']">
+                <img class="ui image medium" src="{{  appSettings.logoImage }}">                
+            </a>
+            <span class="slogan">{{ appSettings.logoSlogan }}</span>
+        </sm-menu>
+        <login-popup sm-item class="ui right secondary"></login-popup>
+    </div>
+</sm-menu>

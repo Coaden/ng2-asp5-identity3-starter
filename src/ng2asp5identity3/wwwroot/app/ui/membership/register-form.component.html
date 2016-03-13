@@ -1,0 +1,54 @@
+<h2 class="ui header sixteen wide column centered">{{ strResources.membershipForms.registerTitle }}</h2>
+<div class="five wide column"></div>
+<form class="error ui form large main-form inverted six wide column centered"
+    [ngFormModel]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+
+    <div class="field">
+        <label for="email">{{ strResources.membershipForms.email }}</label>
+        <input type="email" placeholder="{{ strResources.membershipForms.emailPlaceholder }}"
+            [(ngModel)]="registerViewModel.email" ngControl="email" #email="ngForm">
+        <div *ngIf="showError(email)" class="ui negative message">
+            {{ getEmailError(email) }}
+        </div>
+    </div>
+
+    <div class='field' ngControlGroup="matchingPassword">
+
+        <div class="field">
+            <label for="password">{{ strResources.membershipForms.password }}</label>
+            <input type="password" placeholder="{{ strResources.membershipForms.passwordPlaceholder }}"
+                [(ngModel)]="registerViewModel.password" ngControl="password" #password="ngForm">
+            <div *ngIf="showError(password)" class="ui negative message">
+                {{ getPasswordError(password) }}
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="confirmPassword">{{ strResources.membershipForms.confirmPassword }}</label>
+            <input type="password" placeholder="{{ strResources.membershipForms.confirmPasswordPlaceholder }}"
+                [(ngModel)]="registerViewModel.confirmPassword" ngControl="confirmPassword" #confirmPassword="ngForm">
+            <div *ngIf="showError(confirmPassword) || showMatchingError(confirmPassword)" class="ui negative message">
+                {{ getConfirmPasswordError(confirmPassword) }}
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showRegisterError" class="ui negative message">
+        {{ registerErrorMessage }}
+    </div>
+
+    <sm-button class="positive" type="submit" [disabled]="!canSubmit()" (click)="onSubmitClicked($event)">
+        {{ strResources.membershipForms.registerButton }}
+    </sm-button>
+
+    <div class="ui divider"></div>
+
+    <div>
+        <label>{{ strResources.membershipForms.alreadyHaveAccount }}</label>
+        <a (click)="showLogin()">
+             &nbsp;{{ strResources.membershipForms.loginLink }}
+         </a>
+    </div>
+
+</form>
+<div class="five wide column"></div>

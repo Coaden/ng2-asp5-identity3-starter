@@ -1,0 +1,14 @@
+<a sm-item class="item" sm-dir-tooltip="{{ strResouces.loginPopup.manageAccountToolTip }}" icon="user icon big"
+    [sm-dir-popup]="{selector: 'login-popup', position: 'bottom right'}" *ngIf='userInfo.loggedIn'>
+    {{ userInfo.email }}
+</a>
+<a sm-item class="item" sm-dir-tooltip="{{ strResouces.loginPopup.loginToolTip }}" icon="sign in icon big"
+    [sm-dir-popup]="{selector: 'login-popup', position: 'bottom right'}" *ngIf='!userInfo.loggedIn'>
+    {{ strResouces.loginPopup.iconText }}
+</a>
+<sm-popup selector='login-popup' class='login transition'>
+    <login-form             [hidden]='!showLogin'           parent-page='popup' (done)='doLoggedIn($event)'       (action)='switchView($event)'></login-form>
+    <register-form          [hidden]='!showRegister'        parent-page='popup' (done)='doRegistered($event)'     (action)='switchView($event)'></register-form>
+    <forgot-password-form   [hidden]='!showForgotPassword'  parent-page='popup' (done)='doForgotPassword($event)' (action)='switchView($event)'></forgot-password-form>
+    <membership-menu        [hidden]='!showMenu'            parent-page='popup' (loggedOut)='doLoggedOut($event)' (action)='loadAccountPage($event)'></membership-menu>
+</sm-popup>

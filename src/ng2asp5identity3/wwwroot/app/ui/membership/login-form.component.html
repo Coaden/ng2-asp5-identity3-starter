@@ -1,0 +1,56 @@
+<h2 class="ui header sixteen wide column centered">{{ strResources.membershipForms.loginTitle }}</h2>
+<div class="five wide column"></div>
+<form class="error ui form large main-form inverted six wide column centered"
+      (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+    <sm-loader [complete]="!formSubmited" class="inverted" text="Loading..."></sm-loader>
+
+    <div class="field">
+        <label for="email">{{ strResources.membershipForms.email }}</label>
+        <input type="email" placeholder="{{ strResources.membershipForms.emailPlaceholder }}"
+               required [(ngModel)]="loginViewModel.email" ngControl="email" #email="ngForm">
+        <div [hidden]="!showError(email)" class="ui negative message">
+            {{ strResources.membershipValidation.emailRequired }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="password">{{ strResources.membershipForms.password }}</label>
+        <input type="password" placeholder="{{ strResources.membershipForms.passwordPlaceholder }}"
+               required [(ngModel)]="loginViewModel.password" ngControl="password" #password="ngForm">
+        <div [hidden]="!showError(password)" class="ui negative message">
+            {{ strResources.membershipValidation.emailRequired }}
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" tabindex="0" [(ngModel)]="loginViewModel.rememberMe"
+                   ngControl="rememberMe" #rememberMe="ngForm">
+            <label>{{ strResources.membershipForms.rememberMe }}</label>
+        </div>
+    </div>
+
+    <div *ngIf="showLoginError" class="ui negative message">
+        {{ loginErrorMessage }}
+    </div>
+
+    <div class="field">
+        <a (click)='showForgotPassword()'>{{ strResources.membershipForms.forgotPasswordLink }}</a>
+    </div>
+
+    <sm-button class="positive" type="submit" [disabled]="!loginForm.form.valid" (click)="onSubmitClicked($event)">
+        {{ strResources.membershipForms.loginButton }}
+    </sm-button>
+
+    <div class="ui divider"></div>
+
+    <div>
+        <label>{{ strResources.membershipForms.dontHaveAccount }}</label>
+        <a (click)='showRegister()'>
+            &nbsp;{{ strResources.membershipForms.registerLink }}
+        </a>
+    </div>
+
+</form>
+<div class="five wide column"></div>

@@ -1,0 +1,64 @@
+<form class="ui large form inverted main-form success sixteen wide column centered"
+    [ngFormModel]="accountDetailForm" (ngSubmit)="onSubmit(accountDetailForm.value)">
+
+    <h3 class="ui dividing header">{{ strResources.membershipForms.userDetailsTitle }}</h3>
+
+    <div class="inline fields">
+
+        <div class="two wide field">
+            <label for="firstName">{{ strResources.membershipForms.firstName }}</label>
+        </div>
+        <div class="six wide field">
+            <input type="text" placeholder="{{ strResources.membershipForms.firstNamePlaceholder }}"
+                [(ngModel)]="accountDetailViewModel.firstName" ngControl="firstName" #firstName="ngForm" [sm-dir-popup]="{selector: 'first-name-popup', position: 'top center'}">
+            <sm-popup *ngIf="showError(firstName)" selector="first-name-popup">
+                {{ getError(firstName) }}
+            </sm-popup>
+        </div>
+
+        <div class="two wide field">
+            <label for="lastName">{{ strResources.membershipForms.lastName }}</label>
+        </div>
+        <div class="six wide field">
+            <input type="text" placeholder="{{ strResources.membershipForms.lastNamePlaceholder }}"
+                [(ngModel)]="accountDetailViewModel.lastName" ngControl="lastName" #lastName="ngForm" [sm-dir-popup]="{selector: 'last-name-popup', position: 'top center'}">
+            <sm-popup *ngIf="showError(lastName)" selector="last-name-popup">
+                {{ getError(lastName) }}
+            </sm-popup>
+        </div>
+
+    </div>
+
+    <div class="inline fields">
+
+        <div class="two wide field">
+            <label for="company">{{ strResources.membershipForms.company }}</label>
+        </div>
+        <div class="six wide field">
+            <input type="text" placeholder="{{ strResources.membershipForms.companyPlaceholder }}"
+                [(ngModel)]="accountDetailViewModel.company" ngControl="company" #company="ngForm" [sm-dir-popup]="{selector: 'company-popup', position: 'top center'}">
+            <sm-popup *ngIf="showError(company)" selector="company-popup">
+                {{ getError(company) }}
+            </sm-popup>
+        </div>
+
+        <div class="two wide field">
+            <label for="phone">{{ strResources.membershipForms.phone }}</label>
+        </div>
+        <div class="six wide field">
+            <input type="text" placeholder="{{ strResources.membershipForms.phonePlaceholder }}"
+                [(ngModel)]="accountDetailViewModel.phone" ngControl="phone" #phone="ngForm" [sm-dir-popup]="{selector: 'phone-popup', position: 'top center'}">
+            <sm-popup *ngIf="showError(phone)" selector="phone-popup">
+                {{ getError(phone) }}
+            </sm-popup>
+        </div>
+
+    </div>
+
+    <div class="field">
+        <sm-button class="positive" type="submit" [disabled]="!canSubmit()" (click)="onSubmitClicked($event)">
+            {{ strResources.membershipForms.saveButton }}
+        </sm-button>
+    </div>
+
+</form>

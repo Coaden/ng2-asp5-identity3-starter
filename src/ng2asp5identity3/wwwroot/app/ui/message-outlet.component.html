@@ -1,0 +1,5 @@
+<sm-message *ngFor="#message of messages" class="ui message ten wide column centered {{message.type}}"
+    [ngClass]="{icon: message.icon}" [icon]="message.icon">
+    <div class="header left">{{ message.title }}</div>
+    <p>{{message.content}}</p>
+</sm-message>

@@ -1,0 +1,20 @@
+<a sm-item icon="sidebar icon big" class="item" sm-dir-sidebar="left"
+   sm-dir-tooltip="{{ strResources.sidebar.iconToolTip }}">{{ strResources.sidebar.iconText }}
+</a>
+<sm-sidebar class="left vertical sidebar inverted labeled menu large">
+    <a sm-item class="item" icon="grid home icon" (click)="navigate('Home')">
+        {{ strResources.sidebar.home }}
+    </a>
+    <a *ngIf="userInfo.loggedIn" sm-item class="item" icon="grid newspaper icon" (click)="navigate('Companies')">
+        {{ strResources.sidebar.companies }}
+    </a>
+    <a *ngIf="userInfo.loggedIn" sm-item class="item" icon="grid users icon" (click)="navigate('MembershipManagement')">
+        {{ strResources.sidebar.accountSettings }}
+    </a>
+    <a *ngIf="!userInfo.loggedIn" sm-item class="item" icon="grid sign in icon" (click)="navigate('Login')">
+        {{ strResources.sidebar.loginRegister }}
+    </a>
+    <a *ngIf="userInfo.loggedIn" sm-item class="item" icon="grid sign out icon" (click)="doLogout()">
+        {{ strResources.sidebar.logout }}
+    </a>
+</sm-sidebar>

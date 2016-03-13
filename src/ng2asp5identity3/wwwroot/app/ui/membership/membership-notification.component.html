@@ -1,0 +1,13 @@
+<h2 class="ui header twelve wide column centered">{{ pageTitle }}</h2>
+
+<sm-message class="ui message ten wide column centered {{message.type}}"
+    [ngClass]="{icon: message.icon}" [icon]="message.icon">
+    <div class="header left">{{ message.title }}</div>
+    <p>{{message.content}}</p>
+</sm-message>
+<br/>
+<br/>
+
+<sm-button class="ten wide column centered positive" type="button" *ngIf="showBack" (click)="goBack()">
+    <i class="left arrow icon"></i>{{ strResources.membershipForms.backButton }}
+</sm-button>

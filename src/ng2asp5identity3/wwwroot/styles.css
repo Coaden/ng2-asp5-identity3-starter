@@ -1,0 +1,219 @@
+/*************************************************************
+                                                             *
+  GENERAL LAYOUT                                             *
+                                                             *
+*************************************************************/
+
+body.pushable {
+    background: none !important;
+}
+
+/*.ui.fixed.menu~.ui.grid {
+    padding-top: 4.25rem;
+}*/
+
+.ui.fixed.menu+.ui.grid {
+    padding-top: 0;
+}
+
+.ui.grid, .ui.form {
+    margin-top: 3rem;
+}
+
+.ui.divided.items>.item {
+    margin-left: 25px;
+}
+
+.main-content{
+    margin-top: 62px;
+    padding-top: 10px;
+    margin-bottom: 62px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.main-content .ui.container {
+    position: relative;
+}
+
+.full-height{
+    padding: 1.7em 1.7em !important;
+}
+
+.no-margin{
+    margin: 0 0 !important;
+}
+
+/*************************************************************
+                                                             *
+  TYPOGRAPHY                                                 *
+                                                             *
+*************************************************************/
+
+.ui.large.menu {
+    font-size: 1rem;
+}
+
+/*************************************************************
+                                                             *
+  HEADER                                                     *
+                                                             *
+*************************************************************/
+
+/* LOGO */
+
+
+
+.slogan {
+    display: block;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: grey;
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 30px;
+    /*margin-bottom: 5px;*/
+}
+
+@media screen and (max-width: 991px) {
+    .slogan {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .ui.right.secondary{
+        display: none;
+    }
+}
+
+/*************************************************************
+                                                             *
+  HERO                                                       *
+                                                             *
+*************************************************************/
+
+.ui.vertical.segment:last-child{
+     margin-top: -62px;
+    padding-top: -10px;
+}
+
+home {
+    margin-top: 3rem;
+}
+
+home .masthead .ui.container {
+    height: 100vh;
+}
+
+home .masthead .ui.container .text.container {
+    top: 38%;
+    position: relative;
+}
+
+home h1.ui.inverted.header {
+    font-size: 4.3rem;
+}
+
+home h2 {
+    font-size: 2rem;
+}
+
+home .ui.button {
+    margin-top: 5%;
+}
+
+/*************************************************************
+                                                             *
+  FORMS                                                      *
+                                                             *
+*************************************************************/
+
+.ui.grid.container .main-form.ui.form {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.ui.grid.container .main-form.ui.form .inline.fields .field {
+    margin: 0.5em 0;
+}
+
+.ui.grid.container .main-form.ui.form .field {
+    margin: 1.5em 0;
+}
+
+.ui.grid.container .main-form.inline.fields {
+    margin-left: 12%;
+}
+
+.ui.grid.container .main-form label, .ui.grid.container .main-form .ui.checkbox label {
+    color: black;
+}
+
+.ui.inverted.form input:not([type]), .ui.inverted.form input[type=text], .ui.inverted.form input[type=email], .ui.inverted.form input[type=search], .ui.inverted.form input[type=password], .ui.inverted.form input[type=date], .ui.inverted.form input[type=datetime-local], .ui.inverted.form input[type=tel], .ui.inverted.form input[type=time], .ui.inverted.form input[type=url], .ui.inverted.form input[type=number] {
+    border: 1px solid rgba(34,36,38,.15)
+}
+
+.popup .ui.centered.header {
+    color: white;
+    margin-top: 5%;
+}
+
+/*************************************************************
+                                                             *
+  COMPONENTS                                                 *
+                                                             *
+*************************************************************/
+
+/* MENU */
+
+menu.ui.container {
+    margin: 0;
+}
+
+/* POPUPS */
+
+.form.popup {
+    width: 250px;
+}
+
+.ui.popup.login-popup, .ui.bottom.right.popup:before {
+    background: #1b1c1d;
+}
+
+/* LABELS */
+
+.item .header .label {
+    margin-left: 30px;
+}
+
+.ng-valid.ng-touched[ngControl] {
+  border-left: 5px solid #42A948 !important; /* green */
+}
+
+.ng-invalid.ng-touched[ngControl] {
+  border-left: 5px solid #a94442 !important; /* red */
+}
+
+/*************************************************************
+                                                             *
+  FIXES                                                      *
+                                                             *
+*************************************************************/
+
+ul.ui.list li.item:before {
+    display: none !important;
+}
+
+.ui.active.inverted.dimmer {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+}
+
+.ui.text.large.loader {
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
