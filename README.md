@@ -1,5 +1,8 @@
 # ng2-asp5-identity3-app-skeleton
-Angular2 client, Running in VS2015 using ASP.NET 5 and Identity v3 membership integration and ng-semantic/semantic-ui.
+
+###This is an application skeleton incorperating the basics needed to build a full Angular2 application based on Microsoft's vNext technology.
+
+####Angular2 client, VS2015/ASP.NET 5 and Identity v3 Membership integration with ng-semantic/semantic-ui.
 
 ## A couple of things to note after you clone the project to get it up and running.
 
