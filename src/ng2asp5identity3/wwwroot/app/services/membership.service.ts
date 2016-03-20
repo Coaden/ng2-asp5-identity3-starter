@@ -11,12 +11,12 @@ import {LoggerService, MessageService} from '../services/services';
 import {AppSettings} from '../resources/app-settings'
 import {StrResources} from '../resources/app-resources';
 import {RouteKeys} from '../resources/route-keys';
-import {LoginViewModel} from '../viewmodels/login.viewmodel';
-import {RegisterViewModel} from '../viewmodels/register.viewmodel';
-import {ForgotPasswordViewModel} from '../viewmodels/forgot-password.viewmodel';
-import {ResetPasswordViewModel} from '../viewmodels/reset-password.viewmodel';
-import {AccountDetailViewModel} from '../viewmodels/account-detail.viewmodel';
-import {ChangePasswordViewModel} from '../viewmodels/change-password.viewmodel';
+import {LoginViewModel} from '../viewmodels/membership/login.viewmodel';
+import {RegisterViewModel} from '../viewmodels/membership/register.viewmodel';
+import {ForgotPasswordViewModel} from '../viewmodels/membership/forgot-password.viewmodel';
+import {ResetPasswordViewModel} from '../viewmodels/membership/reset-password.viewmodel';
+import {AccountDetailViewModel} from '../viewmodels/membership/account-detail.viewmodel';
+import {ChangePasswordViewModel} from '../viewmodels/membership/change-password.viewmodel';
 
 import {UserInfo} from '../models/models';
 
@@ -27,6 +27,7 @@ export class MembershipService {
 
     private userInfo: UserInfo;
     public currentUser: Subject<UserInfo>;
+    public userLoaded: Subject<boolean>;
 
     constructor(private _router: Router, private _http: Http, private _logger: LoggerService, private _messageService: MessageService) {
 
@@ -34,9 +35,9 @@ export class MembershipService {
         this.postHeaders.append('Accept', 'application/json');
         this.postHeaders.append('Content-Type', 'application/json');
 
-        this.userInfo = new UserInfo();
-        this.currentUser = new BehaviorSubject<UserInfo>(this.userInfo);
-        this.updateUserInfo();
+        this.userInfo;
+        this.currentUser = new Subject<UserInfo>();
+        this.userLoaded = new Subject<boolean>();
     }
 
     checkPageAuthorized(obj?: any): boolean {
@@ -51,10 +52,14 @@ export class MembershipService {
 
     checkAuthorized(obj?: any): boolean {
 
+        if(this.userInfo === undefined)
+            throw new Error("Attempting checkAuthorized before userInfo loaded");
+
         obj.authenticated =  obj && obj.authenticated  || true;
-        obj.confirmed    =  obj && obj.confirmed       || true;
-        obj.allowedRoles =  obj && obj.allowedRoles    || new Array<string>();
+        obj.confirmed     =  obj && obj.confirmed      || true;
+        obj.allowedRoles  =  obj && obj.allowedRoles   || new Array<string>();
         obj.requiredRoles =  obj && obj.requiredRoles  || new Array<string>();
+
 
         if(obj.authenticated && !this.userInfo.loggedIn) {
             return false;
@@ -85,14 +90,14 @@ export class MembershipService {
                 json => {
                     this._logger.log(json);
                     this.userInfo = new UserInfo({
-                        email: json.Email,
-                        emailConfirmed: json.EmailConfirmed,
-                        loggedIn: json.LoggedIn,
-                        roles: json.Roles,
-                        firstName: json.FirstName,
-                        lastName: json.LastName,
-                        company: json.Company,
-                        phone: json.Phone
+                        email: json.email,
+                        emailConfirmed: json.emailConfirmed,
+                        loggedIn: json.loggedIn,
+                        roles: json.roles,
+                        firstName: json.rirstName,
+                        lastName: json.lastName,
+                        company: json.company,
+                        phone: json.phone
                     });
                 },
                 err => {
@@ -102,13 +107,9 @@ export class MembershipService {
                 },
                 () => {
                     this.currentUser.next(this.userInfo);
+                    this.userLoaded.next(true);
                 }
             );
-    }
-
-    getUserInfo(): UserInfo {
-
-        return this.userInfo;
     }
 
     login(loginViewModel: LoginViewModel): Observable<any> {

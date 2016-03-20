@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
+        this.userInfo = new UserInfo();
         this._membershipService.currentUser.subscribe(
             (userInfo: UserInfo) => {
                 this.userInfo = userInfo;

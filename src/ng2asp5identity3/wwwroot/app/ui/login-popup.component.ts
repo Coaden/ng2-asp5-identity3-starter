@@ -44,7 +44,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy  {
     }
 
     ngOnInit() {
-
+        this.userInfo = new UserInfo();
         this._membershipService.currentUser.subscribe(
             (userInfo: UserInfo) => {
                 if(userInfo.loggedIn) {

@@ -2,7 +2,7 @@ import {Component, OnInit, EventEmitter, Input} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import {SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES} from 'ng-semantic/semantic';
 
-import {LoginViewModel} from '../../viewmodels/login.viewmodel';
+import {LoginViewModel} from '../../viewmodels/membership/login.viewmodel';
 import {StrResources, MessageType} from '../../resources/app-resources';
 import {Message} from '../../models/message.model'
 import {MembershipService, LoggerService, MessageService} from '../../services/services';

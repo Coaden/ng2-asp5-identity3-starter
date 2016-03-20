@@ -9,7 +9,7 @@ import {    CORE_DIRECTIVES,
 import {SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES} from 'ng-semantic/semantic';
 
 import {CustomValidators} from '../../validators/custom.validators'
-import {ForgotPasswordViewModel} from '../../viewmodels/forgot-password.viewmodel';
+import {ForgotPasswordViewModel} from '../../viewmodels/membership/forgot-password.viewmodel';
 import {StrResources, MessageType} from '../../resources/app-resources';
 import {Message} from '../../models/message.model';
 import {MembershipService, LoggerService, MessageService} from '../../services/services';
@@ -98,7 +98,7 @@ export class ForgotPasswordFormComponent implements OnInit {
     }
 
     onSubmit(form: any) {
-        
+
         this._logger.log('Forgot Password form submitted: ' + JSON.stringify(form));
         this._membershipService.forgotPassword(this.forgotPasswordViewModel)
             .subscribe(

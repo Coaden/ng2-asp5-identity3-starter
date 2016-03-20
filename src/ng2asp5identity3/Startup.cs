@@ -1,13 +1,15 @@
-﻿using ng2asp5identity3.Models;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ng2asp5identity3.Models;
 using ng2asp5identity3.OptionModels;
 using ng2asp5identity3.Services;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace ng2asp5identity3
 {
@@ -52,11 +54,16 @@ namespace ng2asp5identity3
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
-            // Add our repository type
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.Formatting = Formatting.Indented;
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+            
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            // Configuratgion Options for Smtp
+            
             services.Configure<SmtpOptions>(Configuration.GetSection("SmtpOptions"));
         }
 

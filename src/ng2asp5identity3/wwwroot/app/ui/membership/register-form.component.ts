@@ -9,7 +9,7 @@ import {    CORE_DIRECTIVES,
 import {SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES} from 'ng-semantic/semantic';
 
 import {CustomValidators} from '../../validators/custom.validators'
-import {RegisterViewModel} from '../../viewmodels/register.viewmodel';
+import {RegisterViewModel} from '../../viewmodels/membership/register.viewmodel';
 import {StrResources, MessageType} from '../../resources/app-resources';
 import {Message} from '../../models/message.model';
 import {AppSettings} from '../../resources/app-settings';

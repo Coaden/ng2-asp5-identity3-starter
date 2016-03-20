@@ -19,7 +19,7 @@
         <input type="password" placeholder="{{ strResources.membershipForms.passwordPlaceholder }}"
                required [(ngModel)]="loginViewModel.password" ngControl="password" #password="ngForm">
         <div [hidden]="!showError(password)" class="ui negative message">
-            {{ strResources.membershipValidation.emailRequired }}
+            {{ strResources.membershipValidation.passwordRequired }}
         </div>
     </div>
 

@@ -1,3 +1,6 @@
+declare var jQuery: any;
+
+
 export class SemanticPopupHelper {
 
     hideAll() {

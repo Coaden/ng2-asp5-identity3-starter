@@ -10,7 +10,7 @@ import {    CORE_DIRECTIVES,
 import {SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES} from 'ng-semantic/semantic';
 
 import {CustomValidators} from '../../validators/custom.validators'
-import {AccountDetailViewModel} from '../../viewmodels/account-detail.viewmodel';
+import {AccountDetailViewModel} from '../../viewmodels/membership/account-detail.viewmodel';
 import {StrResources} from '../../resources/app-resources';
 import {AppSettings} from '../../resources/app-settings';
 import {RouteKeys} from '../../resources/route-keys';
@@ -72,8 +72,12 @@ export class AccountDetailFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        let userInfo: UserInfo = this._membershipService.getUserInfo();
+        let userInfo: UserInfo = new UserInfo();
         this.accountDetailViewModel = new AccountDetailViewModel(userInfo.firstName, userInfo.lastName, userInfo.company, userInfo.phone);
+        this._membershipService.currentUser.subscribe(
+            (userInfo: UserInfo) => {
+                this.accountDetailViewModel = new AccountDetailViewModel(userInfo.firstName, userInfo.lastName, userInfo.company, userInfo.phone);
+            });
     }
 
     showError(ctrl): boolean {

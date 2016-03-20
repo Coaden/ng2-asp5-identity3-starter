@@ -1,4 +1,7 @@
-﻿var gulp = require('gulp');
+﻿/// <binding BeforeBuild='build' Clean='clean' ProjectOpened='init' />
+
+
+var gulp = require('gulp');
 var rimraf = require('rimraf');
 var clean = require('gulp-clean');
 var ts = require('gulp-typescript');
@@ -21,6 +24,8 @@ paths.sematicSource = paths.npm + '/semantic-ui/dist/**/*';
 paths.sematicOutput = paths.libsOutput + '/semantic-ui/dist/';
 paths.ngsematicSource = paths.npm + '/ng-semantic/**/*';
 paths.ngsematicOutput = paths.libsOutput + '/ng-semantic/';
+paths.momentSource = paths.npm + '/moment/**/*';
+paths.momentOutput = paths.libsOutput + '/moment/';
 
 paths.tsSource = paths.webroot + '/app/**/*.ts';
 paths.appOutput = paths.webroot + '/app/';
@@ -41,10 +46,14 @@ gulp.task('copy:libs', ['remove:libs'], function () {
                 paths.npm + '/angular2/bundles/router.dev.js',
                 paths.npm + '/angular2/bundles/http.dev.js',
                 paths.npm + '/systemjs/dist/system.js',
+                paths.npm + '/systemjs/dist/system.js.map',
                 paths.npm + '/systemjs/dist/system-polyfills.js',
-                paths.npm + '/rxjs/bundles/rx.min.js',
-                paths.npm + '/es6-shim/es6-shim.min.js',
+                paths.npm + '/systemjs/dist/system-polyfills.js.map',
+                paths.npm + '/rxjs/bundles/rx.js',
+                paths.npm + '/es6-shim/es6-shim.js',
+                paths.npm + '/es6-shim/es6-shim.map',
                 paths.npm + '/jquery/dist/jquery.min.js',
+                paths.npm + '/moment/min/moment.min.js',
                 paths.npm + '/font-awesome/css/font-awesome.min.css',
                 paths.npm + '/ng-semantic/semantic.js'
     ])
@@ -53,18 +62,19 @@ gulp.task('copy:libs', ['remove:libs'], function () {
     var rxjs = gulp.src([paths.rxjsSource])
         .pipe(gulp.dest(paths.rxjsOutput));
 
-    var semantic = gulp.src([paths.sematicSource])
+    var semantic =gulp.src([paths.sematicSource])
             .pipe(gulp.dest(paths.sematicOutput));
 
     var ngsemantic = gulp.src([paths.ngsematicSource])
         .pipe(gulp.dest(paths.ngsematicOutput));
 
-
     return merge(javascript, rxjs, semantic, ngsemantic);
 
 });
 
-gulp.task('clean:js', function () {
+gulp.task('init', ['copy:libs']);
+
+gulp.task('clean:js', function() {
     var jsClean = gulp.src([paths.jsOutput])
         .pipe(clean(), { force: true });
 
@@ -81,11 +91,11 @@ gulp.task('clean:map', function () {
 gulp.task('clean', ['clean:js', 'clean:map']);
 
 gulp.task('lint:ts', function () {
-    var tsLint = gulp.src(paths.tsSource)
+    var tsLint1 = gulp.src(paths.tsSource)
       .pipe(tslint())
       .pipe(tslint.report('verbose'));
 
-    return tsLint;
+    return tsLint1;
 });
 
 gulp.task('compile:ts', function () {
@@ -98,10 +108,12 @@ gulp.task('compile:ts', function () {
     return tsResult;
 });
 
-gulp.task('build:all', ['clean', 'lint:ts', 'compile:ts']);
+gulp.task('build:lint', ['clean', 'lint:ts', 'compile:ts']);
+
+gulp.task('build', ['clean', 'compile:ts']);
 
 gulp.task('watch', ['build:all'], function () {
     watch([paths.tsSource], function () {
-        gulp.start('build:all');
+        gulp.start( 'build:all' );
     });
 });

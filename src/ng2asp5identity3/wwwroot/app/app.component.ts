@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, Router} from "angular2/router";
+import {ROUTER_DIRECTIVES, RouteConfig, Router, AsyncRoute} from "angular2/router";
 
-import {LoggerService} from './services/services';
+import {LoggerService, MembershipService} from './services/services';
 import {MenuComponent} from './ui/menu.component';
 
 import {MembershipManageComponent} from './ui/membership/membership-manage.component';
@@ -9,7 +9,7 @@ import {LoginPageComponent} from './ui/login-page.component';
 import {ResetPasswordFormComponent} from './ui/membership/reset-password-form.component';
 import {MembershipNotificationComponent} from './ui/membership/membership-notification.component';
 import {HomeComponent} from './ui/home/home.component';
-import {CompaniesComponent} from './ui/main/companies.component';
+import {CompaniesComponent} from './ui/main/companies.component'
 import {MessageOutletComponent} from './ui/message-outlet.component';
 import {UserInfo} from './models/models';
 
@@ -29,14 +29,14 @@ import {UserInfo} from './models/models';
     { path: "/membership-notification/:action", name: "MembershipNotification", component: MembershipNotificationComponent }
 ])
 export class AppComponent implements OnInit {
-    public title = 'main Research';
 
-    constructor(private _router: Router, private _logger: LoggerService) {
+    constructor(private _membershipService: MembershipService, private _router: Router, private _logger: LoggerService) {
 
-        _logger.log(`AppComponent loaded.  main Research appication started.`)
+        _logger.log(`AppComponent loaded.  Bios Research appication started.`)
     }
 
     ngOnInit() {
 
+        this._membershipService.updateUserInfo();
     }
 }

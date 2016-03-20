@@ -10,7 +10,7 @@ import {    CORE_DIRECTIVES,
 import {SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES} from 'ng-semantic/semantic';
 
 import {CustomValidators} from '../../validators/custom.validators'
-import {ResetPasswordViewModel} from '../../viewmodels/reset-password.viewmodel';
+import {ResetPasswordViewModel} from '../../viewmodels/membership/reset-password.viewmodel';
 import {StrResources} from '../../resources/app-resources';
 import {AppSettings} from '../../resources/app-settings';
 import {RouteKeys} from '../../resources/route-keys';

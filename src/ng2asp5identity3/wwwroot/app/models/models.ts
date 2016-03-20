@@ -1,7 +1,7 @@
-import {UserInfoModel} from './user-info.model';
+import {UserInfoModel} from './membership/user-info.model';
 import {MessageModel} from './message.model';
 
-export * from './user-info.model';
+export * from './membership/user-info.model';
 export * from './message.model';
 
 export var CORE_MODELS: Array<any> = [
