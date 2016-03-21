@@ -35,22 +35,22 @@ export class CompaniesComponent implements OnInit {
         this._membershipService.userLoaded.subscribe(
             (done: boolean) => {
 
-            var authorizeInitializer =  {
-                // Is the user authenticated, must be explicitly set to false to
-                // allow anonymous
-                authenticated:  true,
-                // Is the user email confirmed, must be explicitly set to false to
-                // allow non email confirmed accounts.
-                confirmed:      true,
-                // If the user is in any of these he is allowed in
-                // ex. allowedRoles:   ['user', 'role2', 'role3'],
-                // leave empty to skip checking or exclude
-                allowedRoles:   [],
-                // If any of these are specified the user is *requred to be in them.
-                requiredRoles:  []
-            }
-            // Call this in ngOnInit in every page that need authorization
-            let isAuthorized = this._membershipService.checkPageAuthorized(authorizeInitializer);
-        }
+                var authorizeInitializer =  {
+                    // Is the user authenticated, must be explicitly set to false to
+                    // allow anonymous
+                    authenticated:  true,
+                    // Is the user email confirmed, must be explicitly set to false to
+                    // allow non email confirmed accounts.
+                    confirmed:      true,
+                    // If the user is in any of these he is allowed in
+                    // ex. allowedRoles:   ['user', 'role2', 'role3'],
+                    // leave empty to skip checking or exclude
+                    allowedRoles:   [],
+                    // If any of these are specified the user is *requred to be in them.
+                    requiredRoles:  []
+                };
+                // Call this in ngOnInit in every page that need authorization
+                let isAuthorized = this._membershipService.checkPageAuthorized(authorizeInitializer);
+        });
     }
 }
