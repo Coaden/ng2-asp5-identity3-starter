@@ -1,4 +1,4 @@
-# ng2-asp5-identity3-app-skeleton
+# ng2-asp5-identity3-app-starter
 
 ###This is an application skeleton incorperating the basics needed to build a full Angular2 application based on Microsoft's vNext technology.
 
